@@ -52,7 +52,6 @@ async def handle_button(update: Update, context: CallbackContext):
         'topic': "📌 Send your topic followed by bullet points:\nExample:\n'Digital Marketing\n- SEO Importance\n- Social Media Strategies'",
         'twitter': "🔗 Send a Twitter handle (without @)\nExample: 'OpenAI'"
     }
-    
     await query.edit_message_text(text=instructions[input_type])
 
 async def process_content(update: Update, context: CallbackContext):
