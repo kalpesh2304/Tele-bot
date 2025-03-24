@@ -84,12 +84,12 @@ async def process_content(update: Update, context: CallbackContext):
         await update.message.reply_text(f"📜 Generated Script:\n\n{script}")
 
         # --- PHASE 2: Generate & Upload Voiceover ---
-        # await update.message.reply_text("🔊 Generating and uploading voiceover...")
-        # audio_url = generate_voice(
-        #     text=script,
-        #     eleven_api_key=os.getenv('ELEVEN_LABS_API_KEY'),
-        #     heygen_api_key=os.getenv('HEYGEN_API_KEY')
-        # )
+        await update.message.reply_text("🔊 Generating and uploading voiceover...")
+        audio_url = generate_voice(
+            text=script,
+            eleven_api_key=os.getenv('ELEVEN_LABS_API_KEY'),
+            heygen_api_key=os.getenv('HEYGEN_API_KEY')
+        )
 
         # --- PHASE 3: Create Video ---
         await update.message.reply_text("🎞️ Creating video...")

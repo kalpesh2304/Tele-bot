@@ -7,7 +7,7 @@ HEYGEN_BASE_URL = "https://api.heygen.com"
 
 def generate_voice(text: str, eleven_api_key: str, heygen_api_key: str) -> str:
     """Generate voiceover and return Heygen audio asset ID (verified)"""
-    VOICE_ID = "EXAVITQu4vr4xnSDxMaL"
+    VOICE_ID = "d0grukerEzs069eKIauC"
     MODEL_ID = "eleven_monolingual_v1"
     
     try:
@@ -33,14 +33,24 @@ def generate_voice(text: str, eleven_api_key: str, heygen_api_key: str) -> str:
         )
         response.raise_for_status()
         audio_data = response.content
+        
+        # Save the audio data to a local file (audio.mp3)
+        local_audio_path = "audio.mp3"
+        with open(local_audio_path, "wb") as f:
+            f.write(audio_data)
 
-        # 2. Upload to Heygen using CORRECT ENDPOINT
-        upload_response = requests.post(
-            f"https://upload.heygen.com/v1/asset",
-            headers={"X-Api-Key": heygen_api_key},
-            files={"file": ("audio.mp3", audio_data, "audio/mpeg")},
-            timeout=100
-        )
+        url = "https://upload.heygen.com/v1/asset"
+        header = {
+            "Content-Type": "audio/mpeg",
+            "X-Api-Key": heygen_api_key
+        }
+
+        file_path = "C:\\learnings\\tele-bot\\audio.mp3"
+
+        
+        with open(file_path, "rb") as file:
+            upload_response = requests.post(url, headers=header, data=file)
+
         
         # Handle non-JSON responses
         try:

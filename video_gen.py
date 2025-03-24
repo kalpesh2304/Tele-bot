@@ -11,7 +11,7 @@ HEYGEN_BASE_URL = "https://api.heygen.com"
 def generate_avatar_video(script: str, api_key: str, avatar_id: str, voice_id: str = "en-US-male-1") -> str:
     """Generate video directly from script text"""
     try:
-        api_key = "OGRiM2FiZmFmNmRmNGQzN2FkYmFmMzIxZTFjNzQxOGQtMTc0MjcyODM3OQ=="
+        api_key = ""
         # Create request payload
         payload ={
                     "video_inputs": [
